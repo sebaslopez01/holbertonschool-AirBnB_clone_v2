@@ -25,14 +25,15 @@ class DBStorage:
         self.__engine = create_engine(
             f'mysql+mysqldb://{user}:{pwd}@{host}/{db}',
             pool_pre_ping=True)
+        if os.getenv('HBNB_ENV') == 'test':
+            Base.metadata.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
         if cls is not None:
             objs = self.__session.query(cls).all()
             return {f'{cls.__name__}.{obj.id}': obj for obj in objs}
 
-        objs = self.__session.query(
-            User, State, City, Amenity, Place, Review).all()
+        objs = self.__session.query(State, City).all()
 
         return {f'{obj.__class__.__name__}.{obj.id}': obj for obj in objs}
 
