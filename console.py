@@ -128,14 +128,12 @@ class HBNBCommand(cmd.Cmd):
         if len(params) > 1:
             for param in params[1:]:
                 key, value = param.split('=')
-                if '"' in value:
+                if value.startswith('"'):
                     value = value.replace('_', ' ').replace('"', '')
                 elif '.' in value:
                     value = float(value)
-                elif value.isdigit():
-                    value = int(value)
                 else:
-                    continue
+                    value = int(value)
 
                 new_instance.__dict__[key] = value
 
