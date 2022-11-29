@@ -137,7 +137,6 @@ class HBNBCommand(cmd.Cmd):
 
                 kwargs[key] = value
             new_instance = HBNBCommand.classes[params[0]](**kwargs)
-            storage.new(new_instance)
         else:
             new_instance = HBNBCommand.classes[params[0]]()
 

@@ -35,7 +35,7 @@ class DBStorage:
             objs = self.__session.query(State).all()
             objs.extend(self.__session.query(City).all())
 
-        return {f'{obj.__class__.__name__}.{obj.id}': obj for obj in objs}
+        return {f'{type(obj).__name__}.{obj.id}': obj for obj in objs}
 
     def new(self, obj):
         self.__session.add(obj)
