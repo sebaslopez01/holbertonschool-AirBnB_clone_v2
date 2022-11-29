@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
                 key, value = param.split('=')
                 if '"' in value:
                     value = value.replace('_', ' ').replace('"', '')
-                elif value.isdecimal():
+                elif '.' in value:
                     value = float(value)
                 elif value.isdigit():
                     value = int(value)
