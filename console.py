@@ -123,9 +123,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        kwargs = {}
-
         if len(params) > 1:
+            kwargs = {}
+
             for param in params[1:]:
                 key, value = param.split('=')
                 if value.startswith('"'):
