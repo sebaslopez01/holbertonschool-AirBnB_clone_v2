@@ -12,7 +12,7 @@ class FileStorage:
         """Returns a dictionary of models currently in storage 
             or a specific model"""
         if cls is not None:
-            return dict(filter(lambda x: cls.__class__.__name__ in x[0], self.__objects.items()))
+            return {key: value for (key, value) in self.__objects.items() if cls.__class__.__name__ in key}
         return FileStorage.__objects
 
     def new(self, obj):
