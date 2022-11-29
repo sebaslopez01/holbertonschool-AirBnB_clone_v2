@@ -1,0 +1,54 @@
+#!/usr/bin/python3
+
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import sessionmaker, scoped_session, Session
+from models.base_model import Base
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+
+
+class DBStorage:
+    __engine: Engine = None
+    __session: Session = None
+
+    def __init__(self):
+        user = os.getenv("HBNB_MYSQL_USER")
+        pwd = os.getenv("HBNB_MYSQL_PWD")
+        host = os.getenv("HBNB_MYSQL_HOST")
+        db = os.getenv("HBNB_MYSQL_DB")
+        self.__engine = create_engine(
+            f'mysql+mysqldb://{user}:{pwd}@{host}/{db}',
+            pool_pre_ping=True)
+
+    def all(self, cls=None):
+        if cls is not None:
+            objs = self.__session.query(cls).all()
+            return {f'{cls.__name__}.{obj.id}': obj for obj in objs}
+
+        objs = self.__session.query(
+            User, State, City, Amenity, Place, Review).all()
+
+        return {f'{obj.__class__.__name__}.{obj.id}': obj for obj in objs}
+
+    def new(self, obj):
+        self.__session.add(obj)
+
+    def save(self):
+        self.__session.commit()
+
+    def delete(self, obj=None):
+        if obj is not None:
+            self.__session.delete(obj)
+
+    def reload(self):
+        Base.metadata.create_all(self.__engine)
+        session_factory = sessionmaker(
+            bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(session_factory)
+        self.__session = Session()
