@@ -30,10 +30,14 @@ class DBStorage:
 
     def all(self, cls=None):
         if cls is not None:
-            objs = self.__session.query(cls)
+            objs = self.__session.query(cls).all()
         else:
             objs = self.__session.query(State).all()
             objs.extend(self.__session.query(City).all())
+            objs.extend(self.__session.query(User).all())
+            objs.extend(self.__session.query(Amenity).all())
+            objs.extend(self.__session.query(Place).all())
+            objs.extend(self.__session.query(Review).all())
 
         return {f'{type(obj).__name__}.{obj.id}': obj for obj in objs}
 
