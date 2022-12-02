@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 """ """
+import unittest
 from tests.test_models.test_base_model import test_basemodel
 from models.place import Place
+from models.engine.db_storage import DBStorage
+from models import storage
 
 
 class test_Place(test_basemodel):
@@ -109,14 +112,9 @@ class test_Place(test_basemodel):
         new.save()
         self.assertEqual(new.longitude, 200.4)
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_amenity_ids(self):
         """ """
-        new = self.value(city_id='123456789', user_id='123456789',
-                         name='Church', description='Hola que hace',
-                         number_rooms=2, number_bathrooms=3,
-                         max_guest=4, price_by_night=20,
-                         latitude=101.5, longitude=200.4,
-                         amenity_ids=[10, 4, 5]
-                         )
+        new = self.value(amenity_ids=[10, 4, 5])
         new.save()
         self.assertEqual(new.amenity_ids, [10, 4, 5])
