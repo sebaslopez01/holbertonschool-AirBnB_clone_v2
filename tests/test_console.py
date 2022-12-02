@@ -37,6 +37,25 @@ class TestConsole(unittest.TestCase):
             res3 = f.getvalue().strip()
 
         with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd(
+                f'create City state_id="{res}" name="San_Francisco_is_super_cool"')
+            res4 = f.getvalue().strip()
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd(
+                'create User email="my@me.com" password="pwd"\
+ first_name="FN" last_name="LN"')
+            res5 = f.getvalue().strip()
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd(
+                f'create Place city_id="{res4}" user_id="{res5}"\
+ name="My_house" description="no_description_yet" number_rooms=4\
+ number_bathrooms=1 max_guest=3 price_by_night=100\
+ latitude=120.12 longitude=101.4')
+            res6 = f.getvalue().strip()
+
+        with patch('sys.stdout', new=StringIO()) as f:
             self.console.onecmd('all State')
             self.assertIn(res, f.getvalue().strip())
 
@@ -44,6 +63,11 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd('all City')
             self.assertIn(res2, f.getvalue().strip())
             self.assertIn(res3, f.getvalue().strip())
+            self.assertIn(res4, f.getvalue().strip())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd(f'show Place {res6}')
+            self.assertIn(res6, f.getvalue().strip())
 
     @unittest.skipIf(type(storage) == DBStorage, 'Skip DbStorage')
     def test_create(self):
