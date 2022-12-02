@@ -68,7 +68,7 @@ class test_basemodel(unittest.TestCase):
 
     @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
     def test_save_db(self):
-        if type(self.value) != BaseModel:
+        if self.value != BaseModel:
             i = self.value(**self.data)
             i.save()
             key = self.name + "." + i.id
