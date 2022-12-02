@@ -66,13 +66,13 @@ class test_basemodel(unittest.TestCase):
             j = json.load(f)
             self.assertEqual(j[key], i.to_dict())
 
-    @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
-    def test_save_db(self):
-        if self.value != BaseModel:
-            i = self.value(**self.data)
-            i.save()
-            key = self.name + "." + i.id
-            self.assertEqual(storage.all()[key], i)
+    # @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
+    # def test_save_db(self):
+    #     if self.value != BaseModel:
+    #         i = self.value(**self.data)
+    #         i.save()
+    #         key = self.name + "." + i.id
+    #         self.assertEqual(storage.all()[key], i)
 
     def test_str(self):
         """ """
