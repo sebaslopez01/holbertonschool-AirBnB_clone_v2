@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """ """
 from models.base_model import BaseModel
+from models.engine.db_storage import DBStorage
+from models.engine.file_storage import FileStorage
+from models import storage
 import unittest
 import datetime
 from uuid import UUID
@@ -47,6 +50,7 @@ class test_basemodel(unittest.TestCase):
         with self.assertRaises(TypeError):
             new = BaseModel(**copy)
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_save(self):
         """ Testing save """
         i = self.value()
@@ -56,12 +60,22 @@ class test_basemodel(unittest.TestCase):
             j = json.load(f)
             self.assertEqual(j[key], i.to_dict())
 
+    @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
+    def test_save_db(self):
+        i = self.value()
+        i.save()
+        key = self.name + "." + i.id
+        self.assertEqual(storage.all()[key], i)
+
     def test_str(self):
         """ """
         i = self.value()
-        i.__dict__.pop('_sa_instance_state', None)
+        val = i.__dict__.pop('_sa_instance_state', None)
         self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
                          i.__dict__))
+
+        if val:
+            i.__dict__['_sa_instance_state'] = val
 
     def test_todict(self):
         """ """
