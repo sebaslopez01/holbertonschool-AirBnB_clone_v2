@@ -69,6 +69,10 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd(f'show Place {res6}')
             self.assertIn(res6, f.getvalue().strip())
 
+        for obj in storage.all().values():
+            storage.delete(obj)
+        storage.save()
+
     @unittest.skipIf(type(storage) == DBStorage, 'Skip DbStorage')
     def test_create(self):
         with patch('sys.stdout', new=StringIO()) as f:
