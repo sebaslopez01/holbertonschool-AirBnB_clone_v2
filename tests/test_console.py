@@ -38,7 +38,8 @@ class TestConsole(unittest.TestCase):
 
         with patch('sys.stdout', new=StringIO()) as f:
             self.console.onecmd(
-                f'create City state_id="{res}" name="San_Francisco_is_super_cool"')
+                f'create City state_id="{res}"\
+ name="San_Francisco_is_super_cool"')
             res4 = f.getvalue().strip()
 
         with patch('sys.stdout', new=StringIO()) as f:
