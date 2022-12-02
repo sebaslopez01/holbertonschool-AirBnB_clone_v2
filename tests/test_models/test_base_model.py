@@ -36,11 +36,13 @@ class test_basemodel(unittest.TestCase):
                 storage.delete(obj)
             storage.save()
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_default(self):
         """ """
         i = self.value()
         self.assertEqual(type(i), self.value)
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_kwargs(self):
         """ """
         i = self.value()
@@ -48,6 +50,7 @@ class test_basemodel(unittest.TestCase):
         new = BaseModel(**copy)
         self.assertFalse(new is i)
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_kwargs_int(self):
         """ """
         i = self.value()
@@ -66,14 +69,6 @@ class test_basemodel(unittest.TestCase):
             j = json.load(f)
             self.assertEqual(j[key], i.to_dict())
 
-    # @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
-    # def test_save_db(self):
-    #     if self.value != BaseModel:
-    #         i = self.value(**self.data)
-    #         i.save()
-    #         key = self.name + "." + i.id
-    #         self.assertEqual(storage.all()[key], i)
-
     def test_str(self):
         """ """
         i = self.value()
@@ -84,23 +79,27 @@ class test_basemodel(unittest.TestCase):
         if val:
             i.__dict__['_sa_instance_state'] = val
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_todict(self):
         """ """
         i = self.value()
         n = i.to_dict()
         self.assertEqual(i.to_dict(), n)
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_kwargs_none(self):
         """ """
         n = {None: None}
         with self.assertRaises(TypeError):
             new = self.value(**n)
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_id(self):
         """ """
         new = self.value()
         self.assertEqual(type(new.id), str)
 
+    @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_created_at(self):
         """ """
         new = self.value()
