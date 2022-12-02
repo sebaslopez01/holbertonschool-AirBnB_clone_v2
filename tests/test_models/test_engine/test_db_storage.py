@@ -51,5 +51,5 @@ class TestDBStorage(unittest.TestCase):
         state = State(name='California')
         state.save()
         states = storage.all(State)
-        self.assertEqual(self.state, states['State'+'.'+self.state.id])
+        self.assertEqual(state, states['State'+'.'+self.state.id])
         storage.delete(state)
