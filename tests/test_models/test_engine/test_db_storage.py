@@ -18,7 +18,7 @@ class TestDBStorage(unittest.TestCase):
         if type(storage) == DBStorage:
             self.storage = storage
             self.user = User(email='none@gmail.com', password='password')
-            self.storage._DBStorage__session.add(self.user)
+            self.user.save()
             self.state = State(name='California')
             self.state.save()
             self.city = City(name='San Francisco', state_id=self.state.id)
