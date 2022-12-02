@@ -5,6 +5,8 @@ from tests.test_models.test_base_model import test_basemodel
 from models.review import Review
 from models.user import User
 from models.place import Place
+from models.city import City
+from models.state import State
 from models.engine.db_storage import DBStorage
 from models.engine.file_storage import FileStorage
 from models import storage
@@ -21,9 +23,16 @@ class test_review(test_basemodel):
 
     @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
     def test_model(self):
+        state = State(name='California')
+        state.save()
+        city = City(name='Cali', state_id=state.id)
+        city.save()
         user = User(email='hola@gmail.com', password='1234')
         user.save()
-        place = Place(name='California')
+        place = Place(city_id=city.id, user_id=user.id,
+                      name='Church', description='Hola que hace',
+                      number_rooms=2, number_bathrooms=3,
+                      max_guest=4, price_by_night=20)
         place.save()
         new = self.value(place_id=place.id, user_id=user.id, text='hola')
         new.save()
