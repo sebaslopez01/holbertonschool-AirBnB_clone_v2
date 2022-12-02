@@ -16,7 +16,7 @@ class test_User(test_basemodel):
             'first_name': 'Sebas',
             'last_name': 'Lopez',
             'email': 'none@gmail.com',
-            'password': 'password'
+            'password': '1234'
         }
 
     def test_first_name(self):
