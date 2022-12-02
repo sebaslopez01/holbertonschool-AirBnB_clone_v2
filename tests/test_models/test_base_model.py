@@ -25,10 +25,15 @@ class test_basemodel(unittest.TestCase):
         pass
 
     def tearDown(self):
-        try:
-            os.remove('file.json')
-        except:
-            pass
+        if type(storage) == FileStorage:
+            try:
+                os.remove('file.json')
+            except:
+                pass
+        else:
+            for obj in storage.all().values():
+                storage.delete(obj)
+            storage.save()
 
     def test_default(self):
         """ """

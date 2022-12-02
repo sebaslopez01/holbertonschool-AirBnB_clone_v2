@@ -16,4 +16,5 @@ class test_Amenity(test_basemodel):
     def test_name2(self):
         """ """
         new = self.value(name='Bath')
+        new.save()
         self.assertEqual(new.name, 'Bath')

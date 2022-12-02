@@ -56,14 +56,17 @@ class test_Place(test_basemodel):
     def test_latitude(self):
         """ """
         new = self.value(latitude=101.5)
+        new.save()
         self.assertEqual(new.latitude, 101.5)
 
     def test_longitude(self):
         """ """
         new = self.value(longitude=200.4)
+        new.save()
         self.assertEqual(new.longitude, 200.4)
 
     def test_amenity_ids(self):
         """ """
         new = self.value(amenity_ids=[10, 4, 5])
+        new.save()
         self.assertEqual(new.amenity_ids, [10, 4, 5])
