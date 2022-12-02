@@ -5,6 +5,7 @@ from tests.test_models.test_base_model import test_basemodel
 from models.place import Place
 from models.city import City
 from models.user import User
+from models.state import State
 from models.engine.db_storage import DBStorage
 from models.engine.file_storage import FileStorage
 from models import storage
@@ -21,7 +22,9 @@ class test_Place(test_basemodel):
 
     @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
     def test_model(self):
-        city = City(name='Cali')
+        state = State(name='California')
+        state.save()
+        city = City(name='Cali', state_id=state.id)
         city.save()
         user = User(email='dawd@gmail.com', password='1234')
         user.save()
