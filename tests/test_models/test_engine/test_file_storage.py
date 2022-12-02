@@ -3,6 +3,7 @@
 import unittest
 from models.base_model import BaseModel
 from models.engine.db_storage import DBStorage
+from models.engine.file_storage import FileStorage
 from models import storage
 import os
 
@@ -12,18 +13,20 @@ class test_fileStorage(unittest.TestCase):
 
     def setUp(self):
         """ Set up test environment """
-        del_list = []
-        for key in storage.all().keys():
-            del_list.append(key)
-        for key in del_list:
-            del storage.all()[key]
+        if type(storage) == FileStorage:
+            del_list = []
+            for key in storage._FileStorage__objects.keys():
+                del_list.append(key)
+            for key in del_list:
+                del storage._FileStorage__objects[key]
 
     def tearDown(self):
         """ Remove storage file at end of tests """
-        try:
-            os.remove('file.json')
-        except:
-            pass
+        if type(storage) == FileStorage:
+            try:
+                os.remove('file.json')
+            except:
+                pass
 
     @unittest.skipIf(type(storage) == DBStorage, "DBStorage ignore")
     def test_obj_list_empty(self):
