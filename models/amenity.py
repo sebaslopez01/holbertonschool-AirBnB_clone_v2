@@ -12,4 +12,4 @@ class Amenity(BaseModel, Base):
 
     name = Column(String(128), nullable=False)
     place_amenities = relationship(
-        'Place', secondary=association_table, back_populates='amenities', viewonly=False)
+        'Place', secondary='place_amenity', backref='amenities', viewonly=False)
