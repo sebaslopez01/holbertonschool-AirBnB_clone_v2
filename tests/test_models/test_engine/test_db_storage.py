@@ -32,15 +32,11 @@ class TestDBStorage(unittest.TestCase):
     #         self.amenity = Amenity(name='TV')
     #         self.amenity.save()
 
-    # def tearDown(self) -> None:
-    #     if type(storage) == DBStorage:
-    #         self.storage.delete(self.user)
-    #         self.storage.delete(self.state)
-    #         self.storage.delete(self.city)
-    #         self.storage.delete(self.place)
-    #         self.storage.delete(self.review)
-    #         self.storage.delete(self.amenity)
-    #         self.storage.save()
+    def tearDown(self) -> None:
+        if type(storage) == DBStorage:
+            for obj in storage.all().values():
+                storage.delete(obj)
+            storage.save()
 
     @unittest.skipIf(type(storage) == FileStorage, "File Storage ignore")
     def test_instance_creation(self):
@@ -52,4 +48,3 @@ class TestDBStorage(unittest.TestCase):
         state.save()
         states = storage.all(State)
         self.assertEqual(state.id, states['State'+'.'+state.id].id)
-        storage.delete(state)

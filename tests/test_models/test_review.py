@@ -12,6 +12,11 @@ class test_review(test_basemodel):
         super().__init__(*args, **kwargs)
         self.name = "Review"
         self.value = Review
+        self.data = {
+            'place_id': '123456789',
+            'user_id': '123456789',
+            'text': 'hola que hace'
+        }
 
     def test_place_id(self):
         """ """

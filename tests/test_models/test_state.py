@@ -12,6 +12,7 @@ class test_state(test_basemodel):
         super().__init__(*args, **kwargs)
         self.name = "State"
         self.value = State
+        self.data = {'name': 'California'}
 
     def test_name3(self):
         """ """

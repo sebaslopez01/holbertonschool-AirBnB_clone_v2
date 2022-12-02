@@ -12,6 +12,7 @@ class test_Amenity(test_basemodel):
         super().__init__(*args, **kwargs)
         self.name = "Amenity"
         self.value = Amenity
+        self.data = {'name': 'Bath'}
 
     def test_name2(self):
         """ """

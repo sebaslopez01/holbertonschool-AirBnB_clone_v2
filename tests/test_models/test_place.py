@@ -12,6 +12,18 @@ class test_Place(test_basemodel):
         super().__init__(*args, **kwargs)
         self.name = "Place"
         self.value = Place
+        self.data = {
+            'city_id': '123456789',
+            'user_id': '123456789',
+            'name': 'Church',
+            'description': 'Hola que hace',
+            'number_rooms': 2,
+            'number_bathrooms': 3,
+            'max_guest': 4,
+            'price_by_night': 20,
+            'latitude': 200.4,
+            'longitude': 200.4,
+        }
 
     def test_city_id(self):
         """ """
@@ -25,8 +37,8 @@ class test_Place(test_basemodel):
 
     def test_name(self):
         """ """
-        new = self.value(name='California')
-        self.assertEqual(new.name, 'California')
+        new = self.value(name='Church')
+        self.assertEqual(new.name, 'Church')
 
     def test_description(self):
         """ """

@@ -19,6 +19,7 @@ class test_basemodel(unittest.TestCase):
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
+        self.data = {}
 
     def setUp(self):
         """ """
@@ -67,7 +68,7 @@ class test_basemodel(unittest.TestCase):
 
     @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
     def test_save_db(self):
-        i = self.value()
+        i = self.value(**self.data)
         i.save()
         key = self.name + "." + i.id
         self.assertEqual(storage.all()[key], i)
