@@ -27,58 +27,96 @@ class test_Place(test_basemodel):
 
     def test_city_id(self):
         """ """
-        new = self.value(city_id='123456789')
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20)
         self.assertEqual(new.city_id, '123456789')
 
     def test_user_id(self):
         """ """
-        new = self.value(user_id='123456789')
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20)
         self.assertEqual(new.user_id, '123456789')
 
     def test_name(self):
         """ """
-        new = self.value(name='Church')
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20)
         self.assertEqual(new.name, 'Church')
 
     def test_description(self):
         """ """
-        new = self.value(description='Hola que hace')
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20)
         self.assertEqual(new.description, 'Hola que hace')
 
     def test_number_rooms(self):
         """ """
-        new = self.value(number_rooms=2)
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20)
         self.assertEqual(new.number_rooms, 2)
 
     def test_number_bathrooms(self):
         """ """
-        new = self.value(number_bathrooms=3)
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20)
         self.assertEqual(new.number_bathrooms, 3)
 
     def test_max_guest(self):
         """ """
-        new = self.value(max_guest=4)
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20)
         self.assertEqual(new.max_guest, 4)
 
     def test_price_by_night(self):
         """ """
-        new = self.value(price_by_night=20)
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20)
         self.assertEqual(new.price_by_night, 20)
 
     def test_latitude(self):
         """ """
-        new = self.value(latitude=101.5)
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20,
+                         latitude=101.5)
         new.save()
         self.assertEqual(new.latitude, 101.5)
 
     def test_longitude(self):
         """ """
-        new = self.value(longitude=200.4)
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20,
+                         latitude=101.5, longitude=200.4)
         new.save()
         self.assertEqual(new.longitude, 200.4)
 
     def test_amenity_ids(self):
         """ """
-        new = self.value(amenity_ids=[10, 4, 5])
+        new = self.value(city_id='123456789', user_id='123456789',
+                         name='Church', description='Hola que hace',
+                         number_rooms=2, number_bathrooms=3,
+                         max_guest=4, price_by_night=20,
+                         latitude=101.5, longitude=200.4,
+                         amenity_ids=[10, 4, 5]
+                         )
         new.save()
         self.assertEqual(new.amenity_ids, [10, 4, 5])

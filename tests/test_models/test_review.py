@@ -20,18 +20,21 @@ class test_review(test_basemodel):
 
     def test_place_id(self):
         """ """
-        new = self.value(place_id='12345689')
+        new = self.value(place_id='12345689',
+                         user_id='12345689', text='hola que hace')
         new.save()
         self.assertEqual(new.place_id, '12345689')
 
     def test_user_id(self):
         """ """
-        new = self.value(user_id='12345689')
+        new = self.value(place_id='12345689',
+                         user_id='12345689', text='hola que hace')
         new.save()
         self.assertEqual(new.user_id, '12345689')
 
     def test_text(self):
         """ """
-        new = self.value(text='hola que hace')
+        new = self.value(place_id='12345689',
+                         user_id='12345689', text='hola que hace')
         new.save()
         self.assertEqual(new.text, 'hola que hace')
