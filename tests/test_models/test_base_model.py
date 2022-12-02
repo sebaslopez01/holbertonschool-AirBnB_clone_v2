@@ -68,10 +68,11 @@ class test_basemodel(unittest.TestCase):
 
     @unittest.skipIf(type(storage) == FileStorage, "FileStorage ignore")
     def test_save_db(self):
-        i = self.value(**self.data)
-        i.save()
-        key = self.name + "." + i.id
-        self.assertEqual(storage.all()[key], i)
+        if type(self.value) != BaseModel:
+            i = self.value(**self.data)
+            i.save()
+            key = self.name + "." + i.id
+            self.assertEqual(storage.all()[key], i)
 
     def test_str(self):
         """ """
