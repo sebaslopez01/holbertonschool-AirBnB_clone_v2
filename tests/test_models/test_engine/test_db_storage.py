@@ -17,10 +17,11 @@ from models import storage
 class TestDBStorage(unittest.TestCase):
     def setUp(self) -> None:
         if type(storage) == DBStorage:
-            self.storage = DBStorage()
-            Base.metadata.create_all(self.storage._DBStorage__engine)
-            Session = sessionmaker(bind=self.storage._DBStorage__engine)
-            self.storage._DBStorage__session = Session()
+            # self.storage = DBStorage()
+            self.storage = storage
+            # Base.metadata.create_all(self.storage._DBStorage__engine)
+            # Session = sessionmaker(bind=self.storage._DBStorage__engine)
+            # self.storage._DBStorage__session = Session()
             self.user = User(email='none@gmail.com', password='password')
             self.storage._DBStorage__session.add(self.user)
             self.state = State(name='California')
