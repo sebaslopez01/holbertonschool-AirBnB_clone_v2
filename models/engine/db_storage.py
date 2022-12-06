@@ -2,7 +2,7 @@
 
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session, Session
+from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 from models.amenity import Amenity
 from models.city import City
@@ -38,7 +38,7 @@ class DBStorage:
             objs.extend(self.__session.query(Place).all())
             objs.extend(self.__session.query(Review).all())
 
-        return {f'{type(obj).__name__}.{obj.id}': obj for obj in objs}
+        return {'{}.{}'.format(type(obj).__name__, obj.id): obj for obj in objs}
 
     def new(self, obj):
         self.__session.add(obj)
