@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+"""This module defines a DBStorage class"""
+
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -13,6 +15,9 @@ from models.user import User
 
 
 class DBStorage:
+    """
+    DBStorage class
+    """
     __engine = None
     __session = None
 
