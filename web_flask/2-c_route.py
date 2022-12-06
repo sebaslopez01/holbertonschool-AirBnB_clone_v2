@@ -28,7 +28,7 @@ def hbnb():
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def c_route(text):
+def c(text):
     """Prints 'C' followed by a <text>  """
     text = text.replace('_', ' ')
 
@@ -36,4 +36,4 @@ def c_route(text):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run('0.0.0.0', 5000)
