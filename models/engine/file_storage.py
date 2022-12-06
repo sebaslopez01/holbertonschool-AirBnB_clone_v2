@@ -57,7 +57,7 @@ class FileStorage:
         """Delete an object from storage dictionary"""
         if obj is None:
             return
-        del self.__objects[f'{obj.__class__.__name__}.{obj.id}']
+        del self.__objects['{}.{}'.format(obj.__class__.__name__, obj.id)]
 
     def close(self):
         self.reload()
