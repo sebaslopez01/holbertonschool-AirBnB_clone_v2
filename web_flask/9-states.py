@@ -15,14 +15,16 @@ app.url_map.strict_slashes = False
 @app.route('/states', defaults={'id': None})
 @app.route('/states/<id>')
 def states_list(id):
+    error = False
     if id is None:
         states = storage.all(State)
         state = None
     else:
         states = None
-        state = storage.all(State)['State'+'.'+id]
+        state = storage.all(State).get('State.'+id, None)
+        error = True
     return render_template('9-states.html', states=states,
-                           state=state, error=False)
+                           state=state, error=error)
 
 
 @app.errorhandler(404)
