@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """This module defines a Flask app with dynamic routes 
 
 Routes:
