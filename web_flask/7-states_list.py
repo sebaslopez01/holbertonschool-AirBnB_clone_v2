@@ -18,7 +18,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def close_conn():
+def close_conn(exception):
     storage.close()
 
 
