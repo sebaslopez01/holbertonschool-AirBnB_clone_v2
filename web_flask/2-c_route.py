@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
-"""This module defines a Flask app with dynamic routes"""
+""" This module defines a Flask app with dynamic routes """
 
 
 from flask import Flask
+from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -24,7 +25,7 @@ def hbnb():
 def c_route(text):
     text = text.replace('_', ' ')
 
-    return f'C {text}'
+    return f'C {escape(text)}'
 
 
 if __name__ == '__main__':
