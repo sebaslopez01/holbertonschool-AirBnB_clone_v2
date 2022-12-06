@@ -19,16 +19,19 @@ app.url_map.strict_slashes = False
 
 @app.route('/')
 def hello():
+    """Prints 'Hello HBNB!'"""
     return 'Hello HBNB!'
 
 
 @app.route('/hbnb')
 def hbnb():
+    """Prints 'HBNB'"""
     return 'HBNB'
 
 
 @app.route('/c/<text>')
 def c_route(text):
+    """Prints 'C' followed by a <text>  """
     text = text.replace('_', ' ')
 
     return f'C {escape(text)}'
