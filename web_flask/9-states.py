@@ -22,7 +22,8 @@ def states_list(id):
     else:
         states = None
         state = storage.all(State).get('State.'+id, None)
-        error = True
+        if state is None:
+            error = True
     return render_template('9-states.html', states=states,
                            state=state, error=error)
 
