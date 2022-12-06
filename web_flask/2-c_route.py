@@ -9,7 +9,6 @@ Routes:
 
 
 from flask import Flask
-from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -31,7 +30,7 @@ def c(text):
     """Prints 'C' followed by a <text>  """
     text = text.replace('_', ' ')
 
-    return f'C {escape(text)}'
+    return f'C {text}'
 
 
 if __name__ == '__main__':
