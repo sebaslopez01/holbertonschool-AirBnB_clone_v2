@@ -29,33 +29,33 @@ class DBStorage:
 
     def all(self, cls=None):
         if cls is not None:
-            objs = self.__session.query(cls).all()
+            objs = self.__session().query(cls).all()
         else:
-            objs = self.__session.query(State).all()
-            objs.extend(self.__session.query(City).all())
-            objs.extend(self.__session.query(User).all())
-            objs.extend(self.__session.query(Amenity).all())
-            objs.extend(self.__session.query(Place).all())
-            objs.extend(self.__session.query(Review).all())
+            objs = self.__session().query(State).all()
+            objs.extend(self.__session().query(City).all())
+            objs.extend(self.__session().query(User).all())
+            objs.extend(self.__session().query(Amenity).all())
+            objs.extend(self.__session().query(Place).all())
+            objs.extend(self.__session().query(Review).all())
 
         return {f'{type(obj).__name__}.{obj.id}': obj for obj in objs}
 
     def new(self, obj):
-        self.__session.add(obj)
+        self.__session().add(obj)
 
     def save(self):
-        self.__session.commit()
+        self.__session().commit()
 
     def delete(self, obj=None):
         if obj is not None:
-            self.__session.delete(obj)
+            self.__session().delete(obj)
 
     def reload(self):
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(
             bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
-        self.__session = Session()
+        self.__session = Session
 
     def close(self):
-        Session.close()
+        self.__session.remove()
