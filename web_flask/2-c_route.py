@@ -1,6 +1,12 @@
 #!/usr/bin/python3
 
-""" This module defines a Flask app with dynamic routes """
+"""This module defines a Flask app with dynamic routes 
+
+Routes:
+    /
+    /hbnb
+    /c/<text>
+"""
 
 
 from flask import Flask
