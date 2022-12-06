@@ -2,8 +2,7 @@
 
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.engine import Engine
-from sqlalchemy.orm import sessionmaker, scoped_session, Session
+from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 from models.amenity import Amenity
 from models.city import City
@@ -14,8 +13,8 @@ from models.user import User
 
 
 class DBStorage:
-    __engine: Engine = None
-    __session: Session = None
+    __engine = None
+    __session = None
 
     def __init__(self):
         user = os.getenv("HBNB_MYSQL_USER")
@@ -59,4 +58,4 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        self.__session.remove()
+        self.__session.close()
