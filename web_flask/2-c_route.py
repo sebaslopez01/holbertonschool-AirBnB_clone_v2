@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""This module defines a Flask app with dynamic routes 
+"""Starts a Flask web application.
 
-This application listen in localhost port 5000.
+The application listens on 0.0.0.0, port 5000.
 Routes:
-    /
-    /hbnb
-    /c/<text>
+    /: Displays 'Hello HBNB!'.
+    /hbnb: Displays 'HBNB'.
+    /c/<text>: Displays 'C' followed by the value of <text>.
 """
 from flask import Flask
 
