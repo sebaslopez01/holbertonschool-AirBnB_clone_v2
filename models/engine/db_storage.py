@@ -34,6 +34,8 @@ class DBStorage:
 
     def all(self, cls=None):
         if cls is not None:
+            if type(cls) == 'str':
+                cls = eval(cls)
             objs = self.__session.query(cls).all()
         else:
             objs = self.__session.query(State).all()
