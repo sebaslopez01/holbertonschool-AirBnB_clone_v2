@@ -25,7 +25,7 @@ def hbnb():
 def c_route(text):
     text = text.replace('_', ' ')
 
-    return f'C {escape(text)}'
+    return 'C {}'.format(escape(text))
 
 
 @app.route('/python/', defaults={'text': 'is cool'})
@@ -33,7 +33,7 @@ def c_route(text):
 def python_route(text):
     text = text.replace('_', ' ')
 
-    return f'Python {escape(text)}'
+    return 'Python {}'.format(escape(text))
 
 
 if __name__ == '__main__':
