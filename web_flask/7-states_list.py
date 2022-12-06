@@ -19,9 +19,7 @@ def close_conn():
 
 @app.route('/states_list')
 def states_list():
-    sorted_states = sorted(storage.all(State).values(),
-                           key=lambda x: x.name)
-    return render_template('7-states_list.html', states=sorted_states)
+    return render_template('7-states_list.html', states=storage.all(State))
 
 
 if __name__ == '__main__':
