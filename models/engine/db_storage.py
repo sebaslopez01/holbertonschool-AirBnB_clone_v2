@@ -38,7 +38,8 @@ class DBStorage:
             objs.extend(self.__session.query(Place).all())
             objs.extend(self.__session.query(Review).all())
 
-        return {'{}.{}'.format(type(obj).__name__, obj.id): obj for obj in objs}
+        return {'{}.{}'.format(type(obj).__name__, obj.id):
+                obj for obj in objs}
 
     def new(self, obj):
         self.__session.add(obj)
