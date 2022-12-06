@@ -2,7 +2,7 @@
 
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker, scoped_session, Session
 from models.base_model import Base
 from models.amenity import Amenity
 from models.city import City
@@ -58,8 +58,4 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        self.__session.close()
-        session_factory = sessionmaker(
-            bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        self.__session = Session()
+        Session.close()
