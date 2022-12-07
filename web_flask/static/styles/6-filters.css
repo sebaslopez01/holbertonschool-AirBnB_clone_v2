@@ -41,6 +41,12 @@
   padding: 25px 0px;
   border: 1px solid #dddddd;
   border-radius: 4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.popover::-webkit-scrollbar {
+  display: none;
 }
 
 .locations:hover .popover {
