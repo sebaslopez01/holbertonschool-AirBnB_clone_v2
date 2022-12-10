@@ -33,6 +33,7 @@
   display: none;
   background-color: #fafafa;
   width: 100%;
+  max-width: 250px;
   max-height: 300px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -43,6 +44,8 @@
   border-radius: 4px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  position: absolute;
+  z-index: 30;
 }
 
 .popover::-webkit-scrollbar {
